@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\27054\\Desktop\\Canves\\Canves.csproj": {}
+    "C:\\Users\\27054\\Desktop\\Canves\\Canves.csproj": {}
   },
   "projects": {
-    "c:\\Users\\27054\\Desktop\\Canves\\Canves.csproj": {
+    "C:\\Users\\27054\\Desktop\\Canves\\Canves.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\27054\\Desktop\\Canves\\Canves.csproj",
+        "projectUniqueName": "C:\\Users\\27054\\Desktop\\Canves\\Canves.csproj",
         "projectName": "Canves",
-        "projectPath": "c:\\Users\\27054\\Desktop\\Canves\\Canves.csproj",
+        "projectPath": "C:\\Users\\27054\\Desktop\\Canves\\Canves.csproj",
         "packagesPath": "C:\\Users\\27054\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\27054\\Desktop\\Canves\\obj\\",
+        "outputPath": "C:\\Users\\27054\\Desktop\\Canves\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\27054\\AppData\\Roaming\\NuGet\\NuGet.Config"
