@@ -1,0 +1,15 @@
+C:\Users\27054\Desktop\Canves\bin\Debug\net6.0-windows\Canves.exe
+C:\Users\27054\Desktop\Canves\bin\Debug\net6.0-windows\Canves.deps.json
+C:\Users\27054\Desktop\Canves\bin\Debug\net6.0-windows\Canves.runtimeconfig.json
+C:\Users\27054\Desktop\Canves\bin\Debug\net6.0-windows\Canves.dll
+C:\Users\27054\Desktop\Canves\bin\Debug\net6.0-windows\Canves.pdb
+C:\Users\27054\Desktop\Canves\obj\Debug\net6.0-windows\Canves.csproj.AssemblyReference.cache
+C:\Users\27054\Desktop\Canves\obj\Debug\net6.0-windows\Canves.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\27054\Desktop\Canves\obj\Debug\net6.0-windows\Canves.AssemblyInfoInputs.cache
+C:\Users\27054\Desktop\Canves\obj\Debug\net6.0-windows\Canves.AssemblyInfo.cs
+C:\Users\27054\Desktop\Canves\obj\Debug\net6.0-windows\Canves.csproj.CoreCompileInputs.cache
+C:\Users\27054\Desktop\Canves\obj\Debug\net6.0-windows\Canves.dll
+C:\Users\27054\Desktop\Canves\obj\Debug\net6.0-windows\refint\Canves.dll
+C:\Users\27054\Desktop\Canves\obj\Debug\net6.0-windows\Canves.pdb
+C:\Users\27054\Desktop\Canves\obj\Debug\net6.0-windows\Canves.genruntimeconfig.cache
+C:\Users\27054\Desktop\Canves\obj\Debug\net6.0-windows\ref\Canves.dll
