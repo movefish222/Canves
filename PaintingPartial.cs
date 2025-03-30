@@ -1,7 +1,9 @@
 using Canves.Core;
+using System.Reflection;
 
 namespace Canves {
     static partial class Painting{
+        private static List<GObject> gObjects = new List<GObject>();
         public static Scene scene;
         static int frame = 0;
         static Font font = new Font("Arial", 16);
@@ -10,6 +12,24 @@ namespace Canves {
             Graphics g1 = bg.Graphics;
             scene.Render(g1);
             Plot.Cla(bg);
+        }
+        public static void _Start() {
+            Type t_Painting = typeof(Painting);
+            Type t_scene = typeof(Scene);
+            Type t_G = typeof(GObject);
+            FieldInfo[] fields = t_Painting.GetFields(
+                BindingFlags.Public | 
+                BindingFlags.NonPublic | 
+                BindingFlags.Static
+            );
+            foreach (FieldInfo field in fields) {
+                if (field.FieldType == t_G) {
+                    gObjects.Add((GObject)field.GetValue(null));
+                }
+            }
+            foreach (var i in gObjects) {
+                Console.WriteLine(i);
+            }
         }
     }
 }

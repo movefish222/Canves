@@ -37,9 +37,8 @@ namespace Canves {
             Plot.graphics = this.CreateGraphics();
             scene = new Scene(this.comboBox1);
             Painting.scene = scene;
-            Thread.Sleep(20);
+            Painting._Start();       
             Painting.Start();
-            Thread.Sleep(20);
             updating = new Thread(new ThreadStart(MUpdate));
             painting = new Thread(new ThreadStart(Draw));
             updating.Start();
