@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 namespace Canves {
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Field, AllowMultiple = true)]
     public class ManagedAttribute : Attribute {
         public string name;
         public ManagedAttribute(string name) {

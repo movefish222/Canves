@@ -42,7 +42,6 @@ namespace Canves {
             parent = new GObject();
         }
     }
-    [Managed("Scene")]
     public class Scene : GObject{
         private MultiwayTree tree;
         public ComboBox comboBox;

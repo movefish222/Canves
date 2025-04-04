@@ -25,9 +25,16 @@ namespace Canves {
             foreach (FieldInfo field in fields) {
                 if(field.GetCustomAttribute<ManagedAttribute>() != null) {
                     ManagedAttribute attribute = field.GetCustomAttribute<ManagedAttribute>();
-                    if (attribute.name != "scene") {
-                        gObjects.Add((GObject)field.GetValue(null));
+                    if(attribute.name == "Array") {
+                        foreach(GObject obj in (GObject[])field.GetValue(null)) {
+                            if(obj != null) {
+                                gObjects.Add(obj);
+                            } 
+                        }
                     }
+                    else {
+                        gObjects.Add((GObject)field.GetValue(null));
+                    } 
                 }
             }
         }
