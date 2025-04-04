@@ -11,7 +11,7 @@ namespace Canves {
     static class Tool {
 
     }
-
+    [Managed("Arrow")]
     class Arrow : CanvObject {
         private Vector2 head;
         private Vector2 vector;
@@ -85,7 +85,7 @@ namespace Canves {
         }
     }
 
-
+    [Managed("Body")]
     class Body : CanvObject{
 
         public List<Vector2> track;
@@ -147,6 +147,7 @@ namespace Canves {
             Plot.Ball(g, position, 2 * size, colors[0]);
         }
     }
+    [Managed("Spiry")]
     class Spiry : Arrow {
         string resourcePath;
         public Spiry(string path, Vector2 position, Rectangle size) :

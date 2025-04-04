@@ -23,12 +23,12 @@ namespace Canves {
                 BindingFlags.Static
             );
             foreach (FieldInfo field in fields) {
-                if (field.FieldType == t_G) {
-                    gObjects.Add((GObject)field.GetValue(null));
+                if(field.GetCustomAttribute<ManagedAttribute>() != null) {
+                    ManagedAttribute attribute = field.GetCustomAttribute<ManagedAttribute>();
+                    if (attribute.name != "scene") {
+                        gObjects.Add((GObject)field.GetValue(null));
+                    }
                 }
-            }
-            foreach (var i in gObjects) {
-                Console.WriteLine(i);
             }
         }
     }
