@@ -37,6 +37,7 @@ namespace Canves {
                     } 
                 }
             }
+            scene.Add(gObjects);
         }
     }
 }
