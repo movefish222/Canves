@@ -20,11 +20,8 @@ namespace Canves {
             set{ if (!parent.Equals(value)) parent = value; }
         }
         public Vector2 position = new Vector2();
-        public void Add(Scene scene, GObject obj) {
-            if(!scene.Contains(obj)) {
-                scene.Add(obj);
-            }
-            scene.AddChild(this, obj);
+        public void Add(MultiwayTree tree, GObject obj) {
+            tree.AddChild(this, obj);
         }
         public void Remove(GObject obj) {
             Children.Remove(obj);
@@ -57,23 +54,20 @@ namespace Canves {
             }
         }
         public void Add(GObject obj){
-            Children.Add(obj);
+            Add(tree, obj);
             comboBox.Items.Add(obj.ToString() + obj.id);
         }
         public void Add(GObject[] objs){
             foreach (var obj in objs){
-                Children.Add(obj);
+                Add(tree, obj);
                 comboBox.Items.Add(obj);
             }
         }
         public void Add(List<GObject> objs){
             foreach (var obj in objs){
-                Children.Add(obj);
+                Add(tree, obj);
                 comboBox.Items.Add(obj);
             }
-        }
-        public void AddChild(GObject parent, GObject child){
-            tree.AddChild(parent, child);
         }
         public bool Contains(GObject obj){
             return Children.Contains(obj);

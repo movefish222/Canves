@@ -35,7 +35,7 @@ namespace Canves {
                     }
                 }else{
                     if(field.GetType().GetCustomAttribute<ManagedAttribute>() != null){
-                        gObjects.Add((GObject)field.GetValue(null));
+                        gObjects.Add((GObject)field.GetValue(t_Painting));
                     }
                 }
             }

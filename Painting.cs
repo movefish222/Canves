@@ -12,7 +12,7 @@ namespace Canves {
             [Managed("Array")]
             static Body[] bodies = new Body[550];
             static float MAX = 0;
-            static GText gText= new GText("", new Vector2(0, 0), font, Color.White);
+            static GText gText = new GText("", new Vector2(0, 0), font, Color.White);
             public static void Start() {
                 for (int i = 0; i < bodies.Length; i++) {
                     bodies[i] = new Body(new Vector2(RandF.FloRand(0, 2000), RandF.FloRand(0, 1200)), new Vector2(RandF.FloRandArray(-4, 4, 2)), i);
