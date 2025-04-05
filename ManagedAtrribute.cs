@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace Canves {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Field, AllowMultiple = true)]
     public class ManagedAttribute : Attribute {

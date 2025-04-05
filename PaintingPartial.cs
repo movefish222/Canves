@@ -26,15 +26,17 @@ namespace Canves {
                 if(field.GetCustomAttribute<ManagedAttribute>() != null) {
                     ManagedAttribute attribute = field.GetCustomAttribute<ManagedAttribute>();
                     if(attribute.name == "Array") {
-                        foreach(GObject obj in (GObject[])field.GetValue(null)) {
+                        GObject[] array = (GObject[])field.GetValue(t_Painting);
+                        foreach(GObject obj in array) {
                             if(obj != null) {
                                 gObjects.Add(obj);
-                            } 
+                            }
                         }
                     }
-                    else {
+                }else{
+                    if(field.GetType().GetCustomAttribute<ManagedAttribute>() != null){
                         gObjects.Add((GObject)field.GetValue(null));
-                    } 
+                    }
                 }
             }
             scene.Add(gObjects);

@@ -7,9 +7,16 @@ using System.Drawing;
 using Canves.Core;
 
 namespace Canves {
-
-    static class Tool {
-
+    [Managed("Text")]
+    class GText : CanvObject  {
+        public string Text{get; set;}
+        private Font font;
+        public GText(string text, Vector2 position, Font font, Color color) {
+            Text = text; this.position = position; this.font = font; this.colors.Add(color);
+        }
+        public override void Render(Graphics g, Vector2 position) {
+            g.DrawString(Text, font, new SolidBrush(colors[0]), position.x, position.y); 
+        }
     }
     [Managed("Arrow")]
     class Arrow : CanvObject {

@@ -36,9 +36,9 @@ namespace Canves {
         private void button1_Click(object sender, EventArgs e) {
             Plot.graphics = this.CreateGraphics();
             scene = new Scene(this.comboBox1);
-            Painting.scene = scene;
-            Painting._Start();       
+            Painting.scene = scene;       
             Painting.Start();
+            Painting._Start();
             updating = new Thread(new ThreadStart(MUpdate));
             painting = new Thread(new ThreadStart(Draw));
             updating.Start();
