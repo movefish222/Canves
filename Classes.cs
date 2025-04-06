@@ -130,13 +130,13 @@ namespace Canves {
                 if(i == this || !i.visal) {
                     continue;
                 }
-                Vector2 d = i.position - this.position;
+                Vector2 d = i.position - position;
                 float Length = d.Length;
-                if (Length <= i.size + this.size) {
-                    if (i.mass <= this.mass) {
-                        this.v = (i.mass *i.v+this.mass*this.v) / (i.mass + this.mass);
-                        this.mass += i.mass;
-                        this.size = (float)Math.Sqrt(this.mass);
+                if (Length <= i.size + size) {
+                    if (i.mass <= mass) {
+                        v = (i.mass *i.v+mass*v) / (i.mass + mass);
+                        mass += i.mass;
+                        size = (float)Math.Sqrt(mass);
                         i.visal = false;
                     }
                 }
