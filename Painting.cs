@@ -34,7 +34,7 @@ namespace Canves {
                         bodies[i].colors[0] = Color.Red;
                         MAX = bodies[i].mass;
                         gText.Parent = bodies[i];
-                        gText.Text = "最大质量：" + MAX;
+                        gText.Text = MAX.ToString();
                     }
                 }
             }

@@ -101,13 +101,13 @@ namespace Canves {
         public float size;
         public static float dt = 0.01f;
         public static int tLength = 10000;
-        public Body(Vector2 pos, Vector2 v, int id) {
+        public Body(Vector2 pos, Vector2 v, int _id) {
             this.position = pos;
             this.v = v;
             mass = RandF.FloRand(0, 2);
             //this.mass = mass;
             size = (float)Math.Sqrt(mass);
-            this.id = id;
+            id = _id;
             track = new List<Vector2>();
             colors.Add(Color.White);
             colors.Add(Color.Yellow);
