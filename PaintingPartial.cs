@@ -22,6 +22,14 @@ namespace Canves {
                 BindingFlags.NonPublic | 
                 BindingFlags.Static
             );
+            List<FieldInfo> singleFields = new List<FieldInfo>();
+            Type[] types = Assembly.GetExecutingAssembly().GetTypes();
+            List<Type> gTypes = new List<Type>();
+            foreach (Type t in types) {
+                if(t.GetCustomAttribute<ManagedAttribute>()!= null) {
+                    gTypes.Add(t);
+                }
+            }
             foreach (FieldInfo field in fields) {
                 if(field.GetCustomAttribute<ManagedAttribute>() != null) {
                     ManagedAttribute attribute = field.GetCustomAttribute<ManagedAttribute>();
@@ -32,12 +40,18 @@ namespace Canves {
                                 gObjects.Add(obj);
                             }
                         }
-                    }else{
-                        gObjects.Add((GObject)field.GetValue(t_Painting));
                     }
                 }else{
-                    if(field.GetType().GetCustomAttribute<ManagedAttribute>() != null){
-                        gObjects.Add((GObject)field.GetValue(t_Painting));
+                    singleFields.Add(field);
+                }
+            }
+            foreach(FieldInfo field in singleFields) {
+                foreach(Type t in types) {
+                    if(field.FieldType == t){
+                        GObject obj = (GObject)field.GetValue(t_Painting);
+                        if(obj!= null) {
+                            gObjects.Add(obj);
+                        }
                     }
                 }
             }

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Windows.Forms;
-using Canves.Core;
+﻿using Canves.Core;
 
 namespace Canves {
     static partial class Painting {
