@@ -27,7 +27,7 @@ namespace Canves {
                 if(bodies[i].mass > MAX){
                     bodies[i].colors[0] = Color.Red;
                     MAX = bodies[i].mass;
-                    gText.Parent = bodies[i];
+                    scene.Addchild(bodies[i], gText);
                     gText.Text = MAX.ToString();
                 }
             }

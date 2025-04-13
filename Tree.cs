@@ -23,6 +23,9 @@ namespace Canves {
             {
                 throw new ArgumentNullException(nameof(parent), "Parent node cannot be null.");
             }
+            if(value.Parent != null && value.Parent.ContainsChild(value)){
+                value.Parent.Children.Remove(value);
+            }
             parent.Children.Add(value);
             value.Parent = parent;
         }

@@ -78,6 +78,11 @@ namespace Canves {
             }
             return this;
         }
+        public void Addchild(GObject parent, GObject child){
+            if(!parent.ContainsChild(child)){
+                parent.Add(tree, child);
+            }
+        }
         public void Clear(){
             Children.Clear();
         }
