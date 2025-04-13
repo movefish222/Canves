@@ -6,7 +6,6 @@ namespace Canves {
         private static List<GObject> gObjects = new List<GObject>();
         public static Scene scene;
         static int frame = 0;
-        static Font font = new Font("Arial", 16);
         public static void Draw() {
             BufferedGraphics bg = Plot.GetBufferedGraphics(Color.FromArgb(4,Color.Black));
             Graphics g1 = bg.Graphics;
@@ -46,8 +45,8 @@ namespace Canves {
                 }
             }
             foreach(FieldInfo field in singleFields) {
-                foreach(Type t in types) {
-                    if(field.FieldType == t){
+                foreach(Type t in gTypes) {
+                    if(field.FieldType == t) {
                         GObject obj = (GObject)field.GetValue(t_Painting);
                         if(obj!= null) {
                             gObjects.Add(obj);

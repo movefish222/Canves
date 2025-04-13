@@ -14,6 +14,10 @@ namespace Canves {
         public GText(string text, Vector2 position, Font font, Color color) {
             Text = text; this.position = position; this.font = font; this.colors.Add(color);
         }
+        public GText(string text, Vector2 position, Font font, Color color, int _id) {
+            Text = text; this.position = position; this.font = font; this.colors.Add(color);
+            id = _id;
+        }
         public override void Render(Graphics g, Vector2 position) {
             g.DrawString(Text, font, new SolidBrush(colors[0]), position.x, position.y); 
         }
@@ -154,18 +158,18 @@ namespace Canves {
             Plot.Ball(g, position, 2 * size, colors[0]);
         }
     }
-    [Managed("Spiry")]
-    class Spiry : Arrow {
-        string resourcePath;
-        public Spiry(string path, Vector2 position, Rectangle size) :
-            base(position + new Vector2(size.X, 0), position, 1, Color.White)
-        {
-            resourcePath = path;
-        }
-        public override void Render(Graphics g, Vector2 position) {
-            //TODO
-            Bitmap bitmap = new Bitmap(resourcePath);
-            g.DrawImage(bitmap, position.x - bitmap.Width / 2, position.y - bitmap.Height / 2, bitmap.Width, bitmap.Height);
-        }
-    }
+    // [Managed("Spiry")]
+    // class Spiry : Arrow {
+    //     string resourcePath;
+    //     public Spiry(string path, Vector2 position, Rectangle size) :
+    //         base(position + new Vector2(size.X, 0), position, 1, Color.White)
+    //     {
+    //         resourcePath = path;
+    //     }
+    //     public override void Render(Graphics g, Vector2 position) {
+    //         //TODO
+    //         Bitmap bitmap = new Bitmap(resourcePath);
+    //         g.DrawImage(bitmap, position.x - bitmap.Width / 2, position.y - bitmap.Height / 2, bitmap.Width, bitmap.Height);
+    //     }
+    // }
 }
