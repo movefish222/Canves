@@ -13,48 +13,45 @@ namespace Canves {
             Plot.Cla(bg);
         }
         public static void _Start() {
-            Type t_Painting = typeof(Painting);
-            Type t_scene = typeof(Scene);
-            Type t_G = typeof(GObject);
-            FieldInfo[] fields = t_Painting.GetFields(
-                BindingFlags.Public | 
-                BindingFlags.NonPublic | 
+            FieldInfo[] fields = typeof(Painting).GetFields(
+                BindingFlags.Public |
+                BindingFlags.NonPublic |
                 BindingFlags.Static
             );
-            List<FieldInfo> singleFields = new List<FieldInfo>();
-            Type[] types = Assembly.GetExecutingAssembly().GetTypes();
-            List<Type> gTypes = new List<Type>();
-            foreach (Type t in types) {
-                if(t.GetCustomAttribute<ManagedAttribute>()!= null) {
-                    gTypes.Add(t);
-                }
-            }
+            // 统一规则：遍历所有静态字段，取出其值（单对象或集合）。
+            // 字段本身带 [Managed] 时无条件收集其中的 GObject；
+            // 否则按“运行时类型带 [Managed]”收集（接受子类）。
             foreach (FieldInfo field in fields) {
-                if(field.GetCustomAttribute<ManagedAttribute>() != null) {
-                    ManagedAttribute attribute = field.GetCustomAttribute<ManagedAttribute>();
-                    if(attribute.name == "Array") {
-                        GObject[] array = (GObject[])field.GetValue(t_Painting);
-                        foreach(GObject obj in array) {
-                            if(obj != null) {
-                                gObjects.Add(obj);
-                            }
-                        }
-                    }
-                }else{
-                    singleFields.Add(field);
+                object? value = field.GetValue(null);
+                if (value == null) {
+                    continue;
                 }
-            }
-            foreach(FieldInfo field in singleFields) {
-                foreach(Type t in gTypes) {
-                    if(field.FieldType == t) {
-                        GObject obj = (GObject)field.GetValue(t_Painting);
-                        if(obj!= null) {
-                            gObjects.Add(obj);
-                        }
-                    }
-                }
+                bool fieldAnnotated = field.GetCustomAttribute<ManagedAttribute>() != null;
+                Register(value, fieldAnnotated);
             }
             scene.Add(gObjects);
+        }
+        // 自动区分单对象与集合（数组 / List 等任意 IEnumerable），仅做收集
+        private static void Register(object value, bool fieldAnnotated) {
+            // 跳过 gObjects 自身，避免在遍历中修改集合
+            if (ReferenceEquals(value, gObjects)) {
+                return;
+            }
+            if (value is GObject obj) {
+                if (fieldAnnotated || IsManagedType(obj.GetType())) {
+                    gObjects.Add(obj);
+                }
+            } else if (value is System.Collections.IEnumerable sequence) {
+                foreach (object? item in sequence) {
+                    if (item is GObject g && (fieldAnnotated || IsManagedType(g.GetType()))) {
+                        gObjects.Add(g);
+                    }
+                }
+            }
+        }
+        // 用 [Managed] 判断类型是否受管理；inherit:true 让带注解基类的子类也算
+        private static bool IsManagedType(Type type) {
+            return type.GetCustomAttribute<ManagedAttribute>(inherit: true) != null;
         }
     }
 }

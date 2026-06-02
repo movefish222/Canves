@@ -16,10 +16,19 @@ namespace Canves{
             this.comboBox = comboBox;
         }
         public void Render(Graphics g){
-            foreach(CanvObject obj in Children){
-                if(obj.visal){
-                    obj.Render(g, obj.position + obj.Parent.position);
-                }
+            // 从场景根递归渲染整棵子树，世界坐标 = 各级父节点 position 之和。
+            // 这样即便对象被 Addchild 重新挂到别的节点下，依旧会被绘制。
+            foreach(GObject child in Children){
+                RenderNode(g, child, position);
+            }
+        }
+        private void RenderNode(Graphics g, GObject node, Vector2 parentWorld){
+            Vector2 world = node.position + parentWorld;
+            if(node is CanvObject co && co.visal){
+                co.Render(g, world);
+            }
+            foreach(GObject child in node.Children){
+                RenderNode(g, child, world);
             }
         }
         public void Add(GObject obj){

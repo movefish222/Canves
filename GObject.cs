@@ -12,17 +12,17 @@ namespace Canves {
         public int id;
         protected GObject parent;
         public List<GObject> Children = new List<GObject>();
+        public Vector2 position = new Vector2();
         public GObject Parent{ 
             get{ return parent; }
             set{ if (!parent.Equals(value)) parent = value; }
         }
-        public Vector2 position = new Vector2();
         public void Add(MultiwayTree tree, GObject obj) {
             tree.AddChild(this, obj);
         }
         public void Remove(GObject obj) {
             if(Children.Contains(obj)){
-                obj.Parent = null;
+                obj.Parent = new GObject();
                 Children.Remove(obj);
             }else{
                 //抛出错误
