@@ -10,6 +10,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Canves.Core;
 
+
 namespace Canves {
     public partial class Form1 : Form {
         private Thread painting;

@@ -7,7 +7,7 @@ using System.Drawing;
 using System.ComponentModel;
 using Canves.Core;
 
-namespace Canves{
+namespace Canves.Core {
     public class CanvObject : GObject{
         public List<Color> colors = new List<Color>();
         public bool visal = true;
