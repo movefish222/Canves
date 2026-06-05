@@ -23,24 +23,25 @@ namespace Canves {
             while (true) {
                 Time.Tick();
                 Painting.Update();
+                Thread.Sleep(1);
             }
         }
         private void Draw() {
             while (true) {
-                // if(isAbort) {
-                //     continue;
-                // }
-                Painting.Draw();
-                //Thread.Sleep(20);
+                try {
+                    Painting.Draw();
+                } catch { }
+                Thread.Sleep(1);
             }
         }
         private void button1_Click(object sender, EventArgs e) {
             Plot.graphics = this.CreateGraphics();
             scene = new Scene(this.comboBox1);
+            scene.position = new Vector2(this.ClientSize.Width / 2f, this.ClientSize.Height / 2f);
             Painting.scene = scene;       
             Time.Start();
-            Painting.Start();
             Painting._Start();
+            Painting.Start();
             updating = new Thread(new ThreadStart(MUpdate));
             painting = new Thread(new ThreadStart(Draw));
             updating.Start();

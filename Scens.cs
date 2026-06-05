@@ -16,19 +16,28 @@ namespace Canves{
             this.comboBox = comboBox;
         }
         public void Render(Graphics g){
-            // 从场景根递归渲染整棵子树，世界坐标 = 各级父节点 position 之和。
-            // 这样即便对象被 Addchild 重新挂到别的节点下，依旧会被绘制。
-            foreach(GObject child in Children){
-                RenderNode(g, child, position);
+            GObject[] children = Children.ToArray();
+            foreach(GObject child in children){
+                RenderNode(g, child, position, transform.rotation, transform.scale);
             }
         }
-        private void RenderNode(Graphics g, GObject node, Vector2 parentWorld){
-            Vector2 world = node.position + parentWorld;
+        private void RenderNode(Graphics g, GObject node, Vector2 parentPos, float parentRot, float parentScale){
+            float worldRot = parentRot + node.transform.rotation;
+            float worldScale = parentScale * node.transform.scale;
+
+            float rad = parentRot * (float)Math.PI / 180f;
+            float cos = (float)Math.Cos(rad);
+            float sin = (float)Math.Sin(rad);
+            float lx = node.transform.position.x * parentScale;
+            float ly = node.transform.position.y * parentScale;
+            Vector2 worldPos = parentPos + new Vector2(lx * cos - ly * sin, lx * sin + ly * cos);
+
             if(node is CanvObject co && co.visal){
-                co.Render(g, world);
+                co.Render(g, worldPos, worldRot, worldScale);
             }
-            foreach(GObject child in node.Children){
-                RenderNode(g, child, world);
+            GObject[] children = node.Children.ToArray();
+            foreach(GObject child in children){
+                RenderNode(g, child, worldPos, worldRot, worldScale);
             }
         }
         public void Add(GObject obj){
@@ -64,7 +73,7 @@ namespace Canves{
         public void Clear(){
             Children.Clear();
         }
-        public void Sort(){ //TODO:Tabnine
+        public void Sort(){
             Children.Sort((a, b) => a.position.y.CompareTo(b.position.y));
         }
     }

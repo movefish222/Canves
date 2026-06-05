@@ -51,7 +51,7 @@ namespace Canves {
         }
         // 用 [Managed] 判断类型是否受管理；inherit:true 让带注解基类的子类也算
         private static bool IsManagedType(Type type) {
-            return type.GetCustomAttribute<ManagedAttribute>(inherit: true) != null;
+            return Attribute.IsDefined(type, typeof(ManagedAttribute), inherit: true);
         }
     }
 }

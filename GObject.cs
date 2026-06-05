@@ -12,8 +12,12 @@ namespace Canves {
         public int id;
         protected GObject parent;
         public List<GObject> Children = new List<GObject>();
-        public Vector2 position = new Vector2();
-        public GObject Parent{ 
+        public GTransform transform = new GTransform();
+        public Vector2 position {
+            get => transform.position;
+            set => transform.position = value;
+        }
+        public GObject Parent{
             get{ return parent; }
             set{ if (!parent.Equals(value)) parent = value; }
         }
@@ -25,7 +29,6 @@ namespace Canves {
                 obj.Parent = new GObject();
                 Children.Remove(obj);
             }else{
-                //抛出错误
                 throw new Exception("Error: GObject not found");
             }
         }

@@ -11,7 +11,7 @@ namespace Canves{
     public class CanvObject : GObject{
         public List<Color> colors = new List<Color>();
         public bool visal = true;
-        virtual public void Render(Graphics g, Vector2 position){
+        virtual public void Render(Graphics g, Vector2 position, float rotation, float scale){
         }
         public CanvObject(){
             parent = new GObject();
