@@ -21,6 +21,7 @@ namespace Canves {
         }
         private void MUpdate() {
             while (true) {
+                Time.Tick();
                 Painting.Update();
             }
         }
@@ -37,6 +38,7 @@ namespace Canves {
             Plot.graphics = this.CreateGraphics();
             scene = new Scene(this.comboBox1);
             Painting.scene = scene;       
+            Time.Start();
             Painting.Start();
             Painting._Start();
             updating = new Thread(new ThreadStart(MUpdate));

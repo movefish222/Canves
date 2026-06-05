@@ -38,13 +38,13 @@ namespace Canves{
         public void Add(GObject[] objs){
             foreach (var obj in objs){
                 Add(tree, obj);
-                comboBox.Items.Add(obj);
+                comboBox.Items.Add(obj.ToString() + obj.id);
             }
         }
         public void Add(List<GObject> objs){
             foreach (var obj in objs){
                 Add(tree, obj);
-                comboBox.Items.Add(obj);
+                comboBox.Items.Add(obj.ToString() + obj.id);
             }
         }
         public bool Contains(GObject obj){
