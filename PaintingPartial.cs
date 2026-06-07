@@ -5,6 +5,7 @@ namespace Canves {
     static partial class Painting{
         private static List<GObject> gObjects = new List<GObject>();
         public static Scene scene;
+        static TreeView rootView = new TreeView();
         static int frame = 0;
         public static void Draw() {
             BufferedGraphics bg = Plot.GetBufferedGraphics(Color.FromArgb(4,Color.Black));
@@ -30,6 +31,9 @@ namespace Canves {
                 Register(value, fieldAnnotated);
             }
             scene.Add(gObjects);
+            // 挂载树形视图
+            scene.Add(rootView);
+            rootView.position = new Vector2(-scene.position.x + 20, -scene.position.y + 40);
         }
         // 自动区分单对象与集合（数组 / List 等任意 IEnumerable），仅做收集
         private static void Register(object value, bool fieldAnnotated) {

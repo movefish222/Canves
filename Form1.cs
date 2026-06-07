@@ -37,7 +37,7 @@ namespace Canves {
         }
         private void button1_Click(object sender, EventArgs e) {
             Plot.graphics = this.CreateGraphics();
-            scene = new Scene(this.comboBox1);
+            scene = new Scene();
             scene.position = new Vector2(this.ClientSize.Width / 2f, this.ClientSize.Height / 2f);
             Painting.scene = scene;       
             Time.Start();
