@@ -17,11 +17,15 @@ namespace Canves {
         private Thread updating;
         public Graphics g;
         public Scene scene;
+        private volatile bool _paused = false;
+        private readonly ManualResetEventSlim _pauseEvent = new(true);
+
         public Form1() {
             InitializeComponent();
         }
         private void MUpdate() {
             while (true) {
+                _pauseEvent.Wait();
                 Time.Tick();
                 Painting.Update();
                 Thread.Sleep(1);
@@ -29,6 +33,7 @@ namespace Canves {
         }
         private void Draw() {
             while (true) {
+                _pauseEvent.Wait();
                 try {
                     Painting.Draw();
                 } catch { }
@@ -39,25 +44,28 @@ namespace Canves {
             Plot.graphics = this.CreateGraphics();
             scene = new Scene();
             scene.position = new Vector2(this.ClientSize.Width / 2f, this.ClientSize.Height / 2f);
-            Painting.scene = scene;       
+            Painting.scene = scene;
             Time.Start();
             Painting._Start();
             Painting.Start();
-            updating = new Thread(new ThreadStart(MUpdate));
-            painting = new Thread(new ThreadStart(Draw));
+            updating = new Thread(new ThreadStart(MUpdate)) { IsBackground = true };
+            painting = new Thread(new ThreadStart(Draw)) { IsBackground = true };
             updating.Start();
             Thread.Sleep(100);
             painting.Start();
         }
         private void button2_Click(object sender, EventArgs e) {
-            if(painting != null) {
-                painting.Abort();
-                updating.Abort();
-                //this.label1.Text = (new Vector2(RandF.FloRandArray(0, 800, 2))).drection.length.ToString();
+            if (painting == null) return;
+
+            if (!_paused) {
+                _pauseEvent.Reset();
+                _paused = true;
+                button2.Text = "继续";
+            } else {
+                _pauseEvent.Set();
+                _paused = false;
+                button2.Text = "暂停";
             }
-            // if(painting != null && !isAbort) {
-            //     isAbort = true;
-            // }
         }
         private void Form1_Load(object sender, EventArgs e) {
             Plot._mainForm = this;
