@@ -5,7 +5,7 @@ namespace Canves {
     static partial class Painting{
         private static List<GObject> gObjects = new List<GObject>();
         public static Scene scene;
-        static TreeView rootView = new TreeView();
+        static TreeView rootView = new TreeView() { name = "rootView" };
         static int frame = 0;
         public static void Draw() {
             BufferedGraphics bg = Plot.GetBufferedGraphics(Color.FromArgb(4,Color.Black));
